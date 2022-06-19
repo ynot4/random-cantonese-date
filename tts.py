@@ -5,6 +5,17 @@ from globals import *
 engine = pyttsx3.init()  # initialize text-to-speech engine
 
 
+def init_volume_rate():
+    engine.setProperty("volume", int(TTSVOLUME) / 100)
+    engine.setProperty("rate", TTSRATE)
+
+    voices = engine.getProperty("voices")  # getting details of current voice
+    if TTSGENDER == "male":
+        engine.setProperty("voice", voices[4].id)  # changing index, changes voices
+    elif TTSGENDER == "female":
+        engine.setProperty("voice", voices[0].id)  # changing index, changes voices
+
+
 def audio_options():
     new_window = Toplevel()
     window_width = 800
@@ -53,12 +64,62 @@ def audio_options():
     rate.grid(row=0, column=1)
     rframe.pack()
 
+    Label(new_window, fg=fBACKGROUND, bg=BACKGROUND, height=1).pack()
+
+    ###### VOLUME ######################################################################################################
+
+    def set_volume(*args):
+        engine.setProperty("volume", TTSVOLUME_v.get() / 100)
+
+    vframe = Frame(new_window)
+    TTSVOLUME_v = IntVar()
+    Label(vframe, font=("Noto Sans HK", 24), text="Volume:   ").grid(row=0, column=0)
+    volume = ScrollScale(vframe, from_=0, to=100, length=500, orient=HORIZONTAL,
+                         tickinterval=20, font=("Noto Sans", 20), variable=TTSVOLUME_v, command=set_volume)
+    volume.set(TTSVOLUME)
+    volume.grid(row=0, column=1)
+    vframe.pack()
+
+    Label(new_window, fg=fBACKGROUND, bg=BACKGROUND, height=1).pack()
+
+    ###### GENDER ######################################################################################################
+
+    def gender():
+        voices = engine.getProperty("voices")  # getting details of current voice
+        if TTSGENDER_v.get() == "male":
+            engine.setProperty("voice", voices[4].id)  # changing index, changes voices
+        elif TTSGENDER_v.get() == "female":
+            engine.setProperty("voice", voices[0].id)  # changing index, changes voices
+
+    gframe = Frame(new_window)
+    TTSGENDER_v = StringVar()
+    Label(gframe, font=("Noto Sans HK", 28), text="Voice: ", fg=fBACKGROUND, bg=BACKGROUND).grid(row=0,
+                                                                                                 column=0)
+    radiobutton_m = Radiobutton(gframe, text="Male", font=("Noto Sans HK", 20), variable=TTSGENDER_v,
+                                value="male", command=gender)
+    radiobutton_f = Radiobutton(gframe, text="Female", font=("Noto Sans HK", 20), variable=TTSGENDER_v,
+                                value="female", command=gender)
+    radiobutton_m.grid(row=0, column=1)
+    Label(gframe, font=("Noto Sans HK", 28), text=" ", fg=fBACKGROUND, bg=BACKGROUND).grid(row=0, column=2)
+    radiobutton_f.grid(row=0, column=3)
+    gframe.pack()
+
+    if TTSGENDER == "male":
+        radiobutton_m.select()
+        radiobutton_f.deselect()
+    elif TTSGENDER == "female":
+        radiobutton_m.deselect()
+        radiobutton_f.select()
+
     ####### OTHER FUNCTIONS ############################################################################################
 
     Label(new_window, bg=BACKGROUND, height=1).pack()
 
     def reset():
-        rate.set(100)
+        rate.set(200)
+        volume.set(100)
+        radiobutton_m.deselect()
+        radiobutton_f.select()
 
     Button(new_window, text="Reset to Defaults", font=("Noto Sans", 25, "bold"), command=reset).pack()
 
@@ -71,6 +132,8 @@ def audio_options():
         with open(config_location, "r", encoding="utf8") as f:  # 'with' keyword automatically closes the file
             lines = f.readlines()  # returns list with each line in the file as a list item
         lines[23] = f"{TTSRATE_v.get()}\n"
+        lines[24] = f"{TTSVOLUME_v.get()}\n"
+        lines[25] = f"{TTSGENDER_v.get()}\n"
         with open(config_location, "w", encoding="utf8") as f:
             f.writelines(lines)
         new_window.destroy()

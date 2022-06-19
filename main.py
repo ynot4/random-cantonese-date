@@ -4,7 +4,7 @@ from language_options import language_options
 from program_options import program_options
 from display_options import display_options
 from globals import *
-from tts import tts, audio_options
+from tts import tts, audio_options, init_volume_rate
 import random
 import datetime
 
@@ -537,6 +537,8 @@ vol_icon = Button(window, image=icon, command=lambda a=year_number.cget("text"),
 vol_icon.image = icon
 vol_icon.place(relx=1, rely=0, anchor="ne")
 
+init_volume_rate()
+
 window.bind("<n>", generate_new)
 window.bind("<b>", show_answer)
 window.bind("<c>", current_datetime)
@@ -550,4 +552,5 @@ window.bind("<s>", lambda event, a=year_number.cget("text"), b=year_label.cget("
                           p=minute_label.cget("text"): tts(a, b, c, d, e, f, g, h, k, l, m, n, p))
 window.bind("<1>", lambda event: event.widget.focus_set())  # create a binding to move the focus to the window when
 # you click on it
+
 window.mainloop()

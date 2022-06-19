@@ -1,7 +1,60 @@
 from tkinter import messagebox
+import os
+import ctypes.wintypes
 
-config_location = "C:\\Users\\tonys\\PycharmProjects\\randomdate\\config.buot"
-config_default_location = "C:\\Users\\tonys\\PycharmProjects\\randomdate\\config_default.buot"
+
+def create_save_folder():
+    CSIDL_PERSONAL = 5  # My Documents
+    SHGFP_TYPE_CURRENT = 0  # Get current, not default value
+
+    buf = ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
+    ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None, SHGFP_TYPE_CURRENT, buf)
+
+    directory = buf.value + r"\(ynot)\randomdate"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    default_values = """#acd4e8
+#04168a
+#e8c9c8
+#e3aba8
+#edde6b
+#f0e8b1
+#abdbbc
+#6cc48b
+1980
+2040
+12hr
+show date????
+show time???
+零
+written
+#000000
+#ffffff
+#000000
+#000000
+#000000
+#000000
+#000000
+#000000
+200
+100
+female"""
+
+    with open(directory + r"\config_default.buot", "w", encoding="utf8") as f:
+        f.write(default_values)
+
+    if not os.path.exists(directory + r"\config.buot"):
+        with open(directory + r"\config.buot", "w", encoding="utf8") as f:
+            f.write(default_values)
+
+    config_location = directory + r"\config.buot"
+    config_default_location = directory + r"\config_default.buot"
+
+    return config_location, config_default_location
+
+
+config_location, config_default_location = create_save_folder()
 
 BACKGROUND = ""
 HEADER = ""
@@ -29,6 +82,8 @@ fTIME = ""
 fTIME_LABEL = ""
 
 TTSRATE = ""
+TTSVOLUME = ""
+TTSGENDER = ""
 
 
 def init_vars():
@@ -57,6 +112,8 @@ def init_vars():
     global fTIME
     global fTIME_LABEL
     global TTSRATE
+    global TTSVOLUME
+    global TTSGENDER
 
     BACKGROUND = lines[0].strip()
     HEADER = lines[1].strip()
@@ -84,6 +141,8 @@ def init_vars():
     fTIME_LABEL = lines[22].strip()
 
     TTSRATE = lines[23].strip()
+    TTSVOLUME = lines[24].strip()
+    TTSGENDER = lines[25].strip()
 
 
 init_vars()
