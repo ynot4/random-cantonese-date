@@ -126,6 +126,9 @@ window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 window.config(background=BACKGROUND)
 window.title("Date and Time Generator")
 
+icon = PhotoImage(file="app_icon_dark.png")
+window.iconphoto(True, icon)
+
 Label(window, bg=BACKGROUND, height=1).pack()
 
 ###### MENU BAR ########################################################################################################
