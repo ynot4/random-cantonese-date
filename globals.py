@@ -10,7 +10,7 @@ def create_save_folder():
     buf = ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
     ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None, SHGFP_TYPE_CURRENT, buf)
 
-    directory = buf.value + r"\(ynot)\randomdate"
+    directory = buf.value + r"\(ynot)\random-cantonese-date"
     if not os.path.exists(directory):
         os.makedirs(directory)
 
