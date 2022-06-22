@@ -20,11 +20,16 @@ am_pm = ""
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
-    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
     return os.path.join(base_path, relative_path)
 
 
-icon_path = resource_path(r"C:\Users\tonys\PycharmProjects\randomdate\app_icon_dark.png")
+icon_path = resource_path("app_icon_dark.png")
 
 
 def generate_date():
@@ -538,7 +543,7 @@ generate_new()
 
 from PIL import Image, ImageTk
 
-volume_icon_path = resource_path(r"C:\Users\tonys\PycharmProjects\randomdate\audio_icon.png")
+volume_icon_path = resource_path("audio_icon.png")
 
 icon = ImageTk.PhotoImage(Image.open(volume_icon_path).resize((80, 80)))  # the one-liner I used in my app
 vol_icon = Button(window, image=icon, command=lambda a=year_number.cget("text"), b=year_label.cget("text"),
