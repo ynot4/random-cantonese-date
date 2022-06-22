@@ -23,11 +23,11 @@ The program allows you to choose between **spoken and written Cantonese**, **12 
 
 ## Documentation:
 
-When first opened, the program creates a folder in ***Documents\\(ynot)\\random-cantonese-date*** with the configuration files, you can delete them when uninstalling.
+When first opened, the program creates a folder in ***Documents\\(ynot)\\random-cantonese-date*** with the configuration files, you can delete them if uninstalling.
 
-The program has a few secret key bindings:
+The program also has a few ~ 𝓈𝑒𝒸𝓇𝑒𝓉 𝓀𝑒𝓎 𝒷𝒾𝓃𝒹𝒾𝓃𝑔𝓈 ~:
 
-**"n"** to *generate a new date and time*, and **"c"** to show the *current date and time in Chinese*.
+**"n"** to instantly *generate a new date and time*, and **"c"** to show the *current date and time in Chinese*.
 
 ## Download:
 
