@@ -19,7 +19,7 @@ def init_volume_rate():
 def audio_options():
     new_window = Toplevel()
     window_width = 800
-    window_height = 680
+    window_height = 600
     screen_width = new_window.winfo_screenwidth()
     screen_height = new_window.winfo_screenheight()
 

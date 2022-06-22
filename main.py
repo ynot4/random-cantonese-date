@@ -1,3 +1,4 @@
+import sys
 from tkinter import *
 from number_converters import *
 from language_options import language_options
@@ -15,6 +16,15 @@ weekday = ""
 hour = ""
 minutes = ""
 am_pm = ""
+
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+
+icon_path = resource_path(r"C:\Users\tonys\PycharmProjects\randomdate\app_icon_dark.png")
 
 
 def generate_date():
@@ -126,7 +136,7 @@ window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 window.config(background=BACKGROUND)
 window.title("Date and Time Generator")
 
-icon = PhotoImage(file="app_icon_dark.png")
+icon = PhotoImage(file=icon_path)
 window.iconphoto(True, icon)
 
 Label(window, bg=BACKGROUND, height=1).pack()
@@ -145,7 +155,7 @@ settings.add_command(label="Audio Options", command=audio_options)
 settings.add_separator()
 settings.add_command(label="Reset All Settings to Default", command=reset_all)
 settings.add_separator()
-settings.add_command(label="Exit", command=quit)
+settings.add_command(label="Exit", command=window.destroy)
 
 ###### HEADER ##########################################################################################################
 
@@ -527,16 +537,19 @@ show_ans_button.grid(row=0, column=7)
 generate_new()
 
 from PIL import Image, ImageTk
-volume_icon_path = r"C:\Users\tonys\PycharmProjects\randomdate\audio_icon.png"
+
+volume_icon_path = resource_path(r"C:\Users\tonys\PycharmProjects\randomdate\audio_icon.png")
 
 icon = ImageTk.PhotoImage(Image.open(volume_icon_path).resize((80, 80)))  # the one-liner I used in my app
 vol_icon = Button(window, image=icon, command=lambda a=year_number.cget("text"), b=year_label.cget("text"),
-                          c=month_number.cget("text"), d=month_label.cget("text"),
-                          e=day_number.cget("text"), f=day_label.cget("text"),
-                          g=weekday_label.cget("text"), h=weekday_number.cget("text"),
-                          k=time_period.cget("text"), l=hour_number.cget("text"), m=hour_label.cget("text"),
-                          n=minute_number.cget("text"),
-                          p=minute_label.cget("text"): tts(a, b, c, d, e, f, g, h, k, l, m, n, p))
+                                                     c=month_number.cget("text"), d=month_label.cget("text"),
+                                                     e=day_number.cget("text"), f=day_label.cget("text"),
+                                                     g=weekday_label.cget("text"), h=weekday_number.cget("text"),
+                                                     k=time_period.cget("text"), l=hour_number.cget("text"),
+                                                     m=hour_label.cget("text"),
+                                                     n=minute_number.cget("text"),
+                                                     p=minute_label.cget("text"): tts(a, b, c, d, e, f, g, h, k, l, m,
+                                                                                      n, p))
 vol_icon.image = icon
 vol_icon.place(relx=1, rely=0, anchor="ne")
 
