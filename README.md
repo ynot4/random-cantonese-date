@@ -19,7 +19,7 @@ You can install the fonts here: *(also hyperlinked above)*
 
 The aim of this simple program is to allow the user to see how dates and time phrases are formed in the Cantonese language. A random date and time is shown and the user has to input the correct English translation of the date for another to be generated.
 
-The program allows you to choose between spoken and written Cantonese, 12 and 24 hour time, male and female text-to-speech voices, and also allows you to customise the colour scheme.
+The program allows you to choose between **spoken and written Cantonese**, **12 and 24 hour time**, **male and female text-to-speech voices**, and also allows you to **customise the colour scheme**.
 
 ## Documentation:
 
@@ -27,4 +27,8 @@ When first opened, the program creates a folder in ***Documents\\(ynot)\\random-
 
 The program has a few secret key bindings:
 
-**"n"** to generate a new date and time, and **"c"** to show the current date and time in Chinese.
+**"n"** to *generate a new date and time*, and **"c"** to show the *current date and time in Chinese*.
+
+## Download:
+
+https://github.com/ynot4/random-cantonese-date/raw/master/main.exe
