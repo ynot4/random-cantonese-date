@@ -19,11 +19,11 @@ You can install the fonts here: *(also hyperlinked above)*
 
 The aim of this simple program is to allow the user to see how dates and time phrases are formed in the Cantonese language. A random date and time is shown and the user has to input the correct English translation of the date for another to be generated.
 
-The program allows you to choose between **spoken and written Cantonese**, **12 and 24 hour time**, **male and female text-to-speech voices**, and also allows you to **customise the colour scheme**.
+You are able to choose between **spoken and written Cantonese**, **12 and 24 hour time**, **male and female text-to-speech voices**, and you can **customise the colour scheme** as well.
 
 ## Documentation:
 
-When first opened, the program creates a folder in ***Documents\\(ynot)\\random-cantonese-date*** with the configuration files, you can delete them if uninstalling.
+The program runs from a single executible file, ***random-cantonese-date.exe***, so no installation is required. When first opened, a folder is created in ***Documents\\(ynot)\\random-cantonese-date*** to store the configuration files, you can delete them if uninstalling.
 
 The program also has a few ~ 𝓈𝑒𝒸𝓇𝑒𝓉 𝓀𝑒𝓎 𝒷𝒾𝓃𝒹𝒾𝓃𝑔𝓈 ~:
 
