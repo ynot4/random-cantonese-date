@@ -31,4 +31,4 @@ The program has a few secret key bindings:
 
 ## Download:
 
-https://github.com/ynot4/random-cantonese-date/raw/master/main.exe
+https://github.com/ynot4/random-cantonese-date/blob/master/random-cantonese-date.exe [(direct download)](https://github.com/ynot4/random-cantonese-date/raw/master/random-cantonese-date.exe)
